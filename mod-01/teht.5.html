@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leap Year Checker</title>
+</head>
+<body>
+
+  <script>
+
+    const year = parseInt(prompt("Enter a year:"));
+
+    const isLeap =
+      (year % 4 === 0 && year % 100 !== 0) ||
+      (year % 400 === 0);
+
+    if (isLeap) {
+      document.write(year + " is a leap year.");
+    } else {
+      document.write(year + " is not a leap year.");
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
