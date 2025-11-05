@@ -1,0 +1,25 @@
+
+const numDice = parseInt(prompt("Enter the number of dice:"));
+const targetSum = parseInt(prompt("Enter the desired sum of the dice:"));
+
+const simulations = 10000;
+let successCount = 0;
+
+for (let i = 0; i < simulations; i++) {
+  let sum = 0;
+
+  for (let j = 0; j < numDice; j++) {
+    const roll = Math.floor(Math.random() * 6) + 1; // random number between 1–6
+    sum += roll;
+  }
+
+  if (sum === targetSum) {
+    successCount++;
+  }
+}
+
+const probability = (successCount / simulations) * 100;
+
+document.write(
+  "Probability to get sum " + targetSum + " with " + numDice + " dice is " + probability.toFixed(2) + "%."
+);

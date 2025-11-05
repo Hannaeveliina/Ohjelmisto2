@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Square Root Calculator</title>
-</head>
-<body>
-
-  <script>
-    const confirmCalc = confirm("Should I calculate the square root?");
+const confirmCalc = confirm("Should I calculate the square root?");
 
     if (confirmCalc) {
       const number = parseFloat(prompt("Enter a number:"));
@@ -20,8 +12,3 @@
     } else {
       document.write("The square root is not calculated.");
     }
-  </script>
-
-</body>
-</html>
-

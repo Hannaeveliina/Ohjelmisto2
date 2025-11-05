@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Electronic Sorting Hat</title>
-</head>
-<body>
-
-  <script>
-    let name = prompt("What is your name?");
+let name = prompt("What is your name?");
 
     let randomNumber = Math.floor(Math.random() * 4) + 1;
 
@@ -23,7 +15,3 @@
     }
 
     document.write(name + ", you are " + house + "!");
-  </script>
-
-</body>
-</html>

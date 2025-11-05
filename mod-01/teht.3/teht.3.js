@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Sum, Product, and Average</title>
-</head>
-<body>
-
-  <script>
-    let num1 = parseInt(prompt("Enter the first integer:"));
+let num1 = parseInt(prompt("Enter the first integer:"));
     let num2 = parseInt(prompt("Enter the second integer:"));
     let num3 = parseInt(prompt("Enter the third integer:"));
 
@@ -17,8 +9,4 @@
     document.write("<h2>Results</h2>");
     document.write("Sum: " + sum + "<br>");
     document.write("Product: " + product + "<br>");
-    document.write("Average: " + average.toFixed(2)); // Rounded to 2 decimals
-  </script>
-
-</body>
-</html>
+    document.write("Average: " + average.toFixed(2));

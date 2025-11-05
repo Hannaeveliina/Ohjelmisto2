@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Prime Number or not</title>
-</head>
-<body>
 
-  <script>
-    const number = parseInt(prompt("Enter an integer:"));
+const number = parseInt(prompt("Enter an integer:"));
     let isPrime = true;
 
     if (number < 2) {
@@ -25,7 +18,3 @@
     } else {
       document.write(number + " is not a prime number.");
     }
-  </script>
-
-</body>
-</html>
