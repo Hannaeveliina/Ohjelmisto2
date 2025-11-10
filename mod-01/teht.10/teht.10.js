@@ -6,16 +6,16 @@ const times = 10000;
 let Count = 0;
 
 for (let i = 0; i < times; i++) {
-  let sum = 0;
+    let sum = 0;
 
-  for (let j = 0; j < numDice; j++) {
-    const roll = Math.floor(Math.random() * 6) + 1;
-    sum += roll;
-  }
+    for (let j = 0; j < numDice; j++) {
+        const roll = Math.floor(Math.random() * 6) + 1;
+        sum += roll;
+    }
 
-  if (sum === desiredSum) {
-    Count++;
-  }
+    if (sum === desiredSum) {
+        Count++;
+    }
 }
 
 const probability = (Count / times) * 100;
