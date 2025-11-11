@@ -1,13 +1,13 @@
 function even(numbers) {
-  const evens = [];
+  const evenNumbers = [];
 
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] % 2 === 0) {
-      evens.push(numbers[i]);
+  for (let number of numbers) {
+    if (number % 2 === 0) {
+      evenNumbers.push(number);
     }
   }
 
-  return evens;
+  return evenNumbers;
 }
 
 const originalArray = [2, 7, 4, 9, 10, 13, 6];
