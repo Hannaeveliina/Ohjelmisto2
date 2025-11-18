@@ -1,4 +1,4 @@
-let num1 = parseInt(prompt("Enter the first integer:"));
+    let num1 = parseInt(prompt("Enter the first integer:"));
     let num2 = parseInt(prompt("Enter the second integer:"));
     let num3 = parseInt(prompt("Enter the third integer:"));
 
