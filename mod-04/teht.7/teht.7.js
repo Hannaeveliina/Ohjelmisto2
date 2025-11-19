@@ -1,85 +1,80 @@
-'use strict'
+'use strict';
 
 const SCHOOL_LAT = 60.2248;
 const SCHOOL_LON = 24.7586;
 
-const map = L.map('map').setView([SCHOOL_LAT, SCHOOL_LON], 13);
+const map = L.map("map").setView([SCHOOL_LAT, SCHOOL_LON], 13);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
 }).addTo(map);
 
 let routingControl = null;
 
 async function getCoordinates(address) {
-  const url = `https://api.digitransit.fi/geocoding/v1/search?text=${address}`;
+  const url =
+    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+
   const res = await fetch(url);
   const data = await res.json();
 
-  if (data.features.length === 0) {
+  if (data.length === 0) {
     alert("Address not found!");
     return null;
   }
 
-  const coords = data.features[0].geometry.coordinates;
-  return { lon: coords[0], lat: coords[1] };
+  return {
+    lat: parseFloat(data[0].lat),
+    lon: parseFloat(data[0].lon)
+  };
 }
 
 async function getRoute(lat, lon) {
-  const query = `
-  {
-    plan(
-      from: {lat: ${lat}, lon: ${lon}}
-      to: {lat: ${SCHOOL_LAT}, lon: ${SCHOOL_LON}}
-    ) {
-      itineraries {
-        startTime
-        endTime
-      }
-    }
-  }`;
 
-  const response = await fetch(
-    "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/graphql" },
-      body: query
-    }
-  );
+  const url =
+    `https://router.project-osrm.org/route/v1/driving/${lon},${lat};${SCHOOL_LON},${SCHOOL_LAT}?overview=full&geometries=geojson`;
 
-  return await response.json();
+  const res = await fetch(url);
+  const data = await res.json();
+
+  if (!data.routes || data.routes.length === 0) {
+    alert("No route found!");
+    return null;
+  }
+
+  return data.routes[0];
 }
 
 document.getElementById("routeForm").addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const address = document.getElementById("address").value;
-
   const coords = await getCoordinates(address);
   if (!coords) return;
 
-  const routeData = await getRoute(coords.lat, coords.lon);
+  const route = await getRoute(coords.lat, coords.lon);
+  if (!route) return;
 
-  const itinerary = routeData.data.plan.itineraries[0];
-
-  const start = new Date(itinerary.startTime);
-  const end = new Date(itinerary.endTime);
-
-  document.getElementById("times").textContent =
-    `Trip starts: ${start.toLocaleTimeString()} | Ends: ${end.toLocaleTimeString()}`;
-
-  if (routingControl) {
-    map.removeControl(routingControl);
-  }
+  if (routingControl) map.removeControl(routingControl);
 
   routingControl = L.Routing.control({
     waypoints: [
       L.latLng(coords.lat, coords.lon),
       L.latLng(SCHOOL_LAT, SCHOOL_LON)
     ],
-    routeWhileDragging: false
+    lineOptions: { styles: [{ color: "blue", weight: 5 }] },
+    routeWhileDragging: false,
+    createMarker: () => null
   }).addTo(map);
 
-  map.setView([coords.lat, coords.lon], 12);
+  const distanceKm = route.distance / 1000;
+  const durationMin = Math.round(route.duration / 60);
+
+  document.getElementById("times").textContent =
+    `Distance: ${distanceKm.toFixed(1)} km | Duration: ${durationMin} min`;
+
+  map.fitBounds([
+    [coords.lat, coords.lon],
+    [SCHOOL_LAT, SCHOOL_LON]
+  ]);
 });
