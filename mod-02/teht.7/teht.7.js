@@ -1,3 +1,5 @@
+'use strict';
+
 const sides = parseInt(prompt("Enter the number of sides on the dice:"));
 
 function rollDice(sides) {

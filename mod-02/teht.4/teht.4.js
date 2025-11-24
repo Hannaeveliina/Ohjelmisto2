@@ -1,3 +1,5 @@
+'use strict';
+
 const numbers = [];
 
 while (true) {

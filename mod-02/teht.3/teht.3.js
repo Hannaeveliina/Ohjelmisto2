@@ -1,3 +1,5 @@
+'use strict';
+
 const dogs = [];
 
 for (let i = 0; i < 6; i++) {

@@ -1,4 +1,5 @@
 'use strict';
+
 const students = [
   {
     name: 'John',

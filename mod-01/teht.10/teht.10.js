@@ -1,3 +1,4 @@
+'use strict';
 
 const numDice = parseInt(prompt("Enter the number of dice:"));
 const desiredSum = parseInt(prompt("Enter the desired sum of the dice:"));

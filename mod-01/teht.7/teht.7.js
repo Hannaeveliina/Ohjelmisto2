@@ -1,3 +1,5 @@
+'use strict';
+
 let rolls = parseInt(prompt("How many dice do you want to roll?"));
 
     let sum = 0;

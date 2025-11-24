@@ -1,3 +1,5 @@
+'use strict';
+
 const numCandidates = parseInt(prompt("Enter the number of candidates:"));
 
 const candidates = [];
@@ -14,7 +16,7 @@ for (let i = 0; i < numVoters; i++) {
 
   if (vote === "" || vote === null) {
     console.log(`Voter ${i + 1} cast an empty vote.`);
-    continue; // skip to the next voter
+    continue;
   }
 
   const candidate = candidates.find(c => c.name.toLowerCase() === vote.toLowerCase());

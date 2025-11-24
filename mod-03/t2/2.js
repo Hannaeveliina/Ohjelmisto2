@@ -1,3 +1,5 @@
+'use strict';
+
 const target = document.getElementById("target");
 
 const items = ["First item", "Second item", "Third item"];

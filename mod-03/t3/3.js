@@ -1,4 +1,5 @@
 'use strict';
+
 const names = ['John', 'Paul', 'Jones'];
 
 const target = document.getElementById("target");

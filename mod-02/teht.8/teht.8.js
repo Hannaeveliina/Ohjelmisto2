@@ -1,3 +1,5 @@
+'use strict';
+
 function concat(array) {
   let result = "";
 

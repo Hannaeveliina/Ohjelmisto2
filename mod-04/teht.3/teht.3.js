@@ -1,3 +1,5 @@
+'use strict';
+
 const form = document.querySelector("#searchForm");
 const query = document.querySelector("#query");
 const results = document.querySelector("#results");

@@ -1,4 +1,5 @@
 'use strict';
+
 const picArray = [
   {
     title: 'Title 1',

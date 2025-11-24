@@ -1,3 +1,5 @@
+'use strict';
+
 const numParticipants = parseInt(prompt("Enter the number of participants:"));
 
 const participants = [];

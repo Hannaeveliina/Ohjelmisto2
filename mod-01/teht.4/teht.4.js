@@ -1,3 +1,5 @@
+'use strict';
+
 let name = prompt("What is your name?");
 
     let randomNumber = Math.floor(Math.random() * 4) + 1;
